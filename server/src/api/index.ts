@@ -1,12 +1,14 @@
 import {NextFunction, Request, Response} from 'express';
 import express from "express";
 import userController from "./controller/userController"
+import commentController from "./controller/commentController"
 
 const cors = require('cors');
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/users", userController)
+app.use("/comments", commentController)
 
 
 
@@ -22,9 +24,6 @@ app.get("/", (req, res) => {
 //    res.json({ users });
 // })
 
-// app.get('/comments', async (req: Request, res: Response) => {
-//   const comments = await prisma.comment.findMany();
-//   res.json({ comments })
-// })
+
 
 export default app

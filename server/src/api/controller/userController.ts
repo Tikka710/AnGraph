@@ -5,6 +5,7 @@ import express from "express";
 const prisma = new PrismaClient();
 const router = Router();
 const app = express();
+
 // GET /users
 app.use(cors())
 router.get("/", async (req: Request, res: Response) => {

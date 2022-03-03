@@ -1,33 +1,27 @@
 <div class="page">
   <section class="chat">
     <div class="chat-timeline">
-      <div *ngIf="hello|async as h">
-        <p>{{ h.message | json }}</p>
-
-      </div>
-      <div *ngFor="let comment of comments" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+      <div *ngFor="let comment of comments$  | async | keyvalue" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+        <!-- <p>
+          {{comment}}
+        </p> -->
         <div class="media">
           
-          <div *ngIf="comment.user.uid !== currentUser.uid" class="media-left">
-            <a href="#" class="icon">{{ comment.user.initial }}</a>
-          </div>
+          <!-- <div *ngIf="comment.id !== currentUser.uid" class="media-left">
+            <a href="#" class="icon">{{ comment }}</a>
+          </div> -->
           <div class="media-body">
             <div class="d-flex w-100 justify-content-between">
-              <h4 class="media-heading">{{ comment.user.name }}</h4>
-              <small class="media-date">{{ comment.date | commentDate}}</small>
+              <h4 class="media-heading">{{ comment }}</h4>
+              <small class="media-date">{{ comment}}</small>
             </div>
-            <pre>{{ comment.message }}</pre>
+            <pre>{{ ccomment.message }}</pre>
           </div>
           <div *ngIf="comment.user.uid === currentUser.uid" class="media-right">
             <a href="#" class="icon">竹</a>
           </div>
         </div>
       </div>
-      <!-- <div *ngFor="let user of $items | async">
-        <p>{{ user }}</p>
-
-      </div> -->
-
       <div *ngIf="$items | async as i" class="list-group-item list-group-item-action flex-column align-items-start border-0">
         <div class="media">
           
@@ -44,21 +38,21 @@
     </div>
   </section>
 
-  <section class="chat-editor">
-    <form class="chat-form">
+  <!-- <section class="chat-editor">
+    <form #form=ngForm (ngSubmit)="setComment(form.value)" class="chat-form">
       <div class="form-header d-flex flex-row-reverse mb-2">
         <span class="input-group-btn">
-          <button (click)="addComment(comment); comment = ''" class="btn btn-info btn-sm" type="submit" tabindex="2">送信</button>
+          <button class="btn btn-info btn-sm" type="submit" tabindex="2">送信</button>
         </span>
       </div>
       <div class="input-group">
         <textarea
-        [(ngModel)]="comment"
-        name="comment" 
+        [(ngModel)]="message"
+        name="message" 
         class="form-control"
         placeholder="メッセージを入力"
         tabindex="1"></textarea>
       </div>
     </form>
-  </section>
+  </section> -->
 </div>

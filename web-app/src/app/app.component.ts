@@ -1,19 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService, Item, Hello } from './service/api.service';
-import { Comment } from './class/comment'
-import { User } from './class/user'
-
-const CURRENT_USER: User = new User(1, '五十嵐 傭兵')
-const ANOTHER_USER: User = new User(2, '竹井 健治')
-
-
-const COMMENTS: Comment[] = [
-  new Comment(ANOTHER_USER, 'お疲れ様です！'),
-  new Comment(ANOTHER_USER, 'この間の件どうなりましたか？'),
-  new Comment(CURRENT_USER, 'dodomo')
-  // {name: '五十嵐 傭兵', message: 'お疲れ様です！！！'},
-]
+import { ApiService, Item} from './service/api.service';
+import { Comment } from './models/comment';
+import { CommentService } from './service/comment.service'
+// import { Comment } from './class/comment'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'ac-root',
@@ -22,32 +13,32 @@ const COMMENTS: Comment[] = [
 })
 export class AppComponent implements OnInit {
   title = 'web-app';
-  hello!: Observable<Hello>
+  
   public $items!: Observable<Item>
   // items!: Item[]
-  comments = COMMENTS
-  currentUser = CURRENT_USER
-  comment = ''
-  commentDateFormat = 'yyyy/MM/dd HH:mm'
+  public comments$!: Observable<Comment>
+  form!: NgForm
 
 
-  addComment(comment: string){
-    if(comment){
-      this.comments.push(new Comment(this.currentUser, comment))
-    }
+  constructor(private api:ApiService, private comment: CommentService){}
+  
+  setComment(form: Comment): void{
+    this.comment.addComment(form).subscribe(
+      res => {
+        console.log(res);
+        
+      }
+    )
   }
-  constructor(private api:ApiService){
-  }
 
-  // getUsers(): void{
-  //   this.api.getUsers().subscribe(res => {
-  //     this.items = res
+  // getComments(): void{
+  //   this.comment.getComments().subscribe(res => {
+  //     this.comments$ = res.comments
   //   })
   // }
 
   ngOnInit(): void{
-    this.hello = this.api.hello$
     this.$items = this.api.getUsers();
-    console.log(this.$items)
+    this.comments$ = this.comment.getComments()
   }
 }
