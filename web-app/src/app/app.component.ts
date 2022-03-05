@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { ApiService, Item} from './service/api.service';
 import { Comment } from './models/comment';
 import { CommentService } from './service/comment.service'
-// import { Comment } from './class/comment'
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -16,6 +15,7 @@ export class AppComponent implements OnInit {
   
   public $items!: Observable<Item>
   // items!: Item[]
+  comes$!: Comment
   public comments$!: Observable<Comment>
   form!: NgForm
 
@@ -37,8 +37,13 @@ export class AppComponent implements OnInit {
   //   })
   // }
 
-  ngOnInit(): void{
+  ngOnInit(): any{
     this.$items = this.api.getUsers();
-    this.comments$ = this.comment.getComments()
+    // this.comments$ = this.comment.getComments()
+    this.comment.getComments().subscribe((res) => {
+       this.comes$ = res
+       console.log(this.comes$)
+    })
+    
   }
 }

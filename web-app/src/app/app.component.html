@@ -1,26 +1,21 @@
 <div class="page">
   <section class="chat">
     <div class="chat-timeline">
-      <div *ngFor="let comment of comments$  | async | keyvalue" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-        <!-- <p>
-          {{comment}}
-        </p> -->
-        <div class="media">
-          
-          <!-- <div *ngIf="comment.id !== currentUser.uid" class="media-left">
-            <a href="#" class="icon">{{ comment }}</a>
-          </div> -->
-          <div class="media-body">
-            <div class="d-flex w-100 justify-content-between">
-              <h4 class="media-heading">{{ comment }}</h4>
-              <small class="media-date">{{ comment}}</small>
+      <div *ngFor="let comment of comes$ | keyvalue" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+        
+          <div class="media">
+            <div class="media-body">
+              <div class="d-flex w-100 justify-content-between">
+                <h4 class="media-heading">{{ comment.value[0].id }}</h4>
+                <small class="media-date">{{ comment.value[0].createdAt | commentDate}}</small>
+              </div>
+              <pre>{{ comment.value[0].message }}</pre>
             </div>
-            <pre>{{ ccomment.message }}</pre>
+            <!-- <div *ngIf="comment.user.uid === currentUser.uid" class="media-right">
+              <a href="#" class="icon">竹</a>
+            </div> -->
           </div>
-          <div *ngIf="comment.user.uid === currentUser.uid" class="media-right">
-            <a href="#" class="icon">竹</a>
-          </div>
-        </div>
+        
       </div>
       <div *ngIf="$items | async as i" class="list-group-item list-group-item-action flex-column align-items-start border-0">
         <div class="media">
@@ -38,7 +33,7 @@
     </div>
   </section>
 
-  <!-- <section class="chat-editor">
+  <section class="chat-editor">
     <form #form=ngForm (ngSubmit)="setComment(form.value)" class="chat-form">
       <div class="form-header d-flex flex-row-reverse mb-2">
         <span class="input-group-btn">
@@ -47,12 +42,12 @@
       </div>
       <div class="input-group">
         <textarea
-        [(ngModel)]="message"
+        [(ngModel)]="comes$"
         name="message" 
         class="form-control"
         placeholder="メッセージを入力"
         tabindex="1"></textarea>
       </div>
     </form>
-  </section> -->
+  </section>
 </div>
