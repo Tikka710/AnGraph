@@ -1,19 +1,22 @@
 <div class="page">
   <section class="chat">
     <div class="chat-timeline">
-      <div *ngFor="let comment of comes$ | keyvalue" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-        
+      <div *ngFor="let comment of comes$" class="list-group-item list-group-item-action flex-column align-items-start border-0">
           <div class="media">
             <div class="media-body">
               <div class="d-flex w-100 justify-content-between">
-                <h4 class="media-heading">{{ comment.value[0].id }}</h4>
-                <small class="media-date">{{ comment.value[0].createdAt | commentDate}}</small>
+                <h4 class="media-heading">{{ comment.user.name}}
+                  <ng-container *ngIf="comment.user.id === currentUser.id">
+                    <mat-icon>edit</mat-icon>                      
+                  </ng-container>
+                </h4>
+                <small class="media-date">{{ comment.createdAt | commentDate}}</small>
               </div>
-              <pre>{{ comment.value[0].message }}</pre>
+              <pre>{{ comment.message }}</pre>
             </div>
-            <!-- <div *ngIf="comment.user.uid === currentUser.uid" class="media-right">
-              <a href="#" class="icon">竹</a>
-            </div> -->
+            <div *ngIf="comment.user.id === currentUser.id" class="media-right">
+              <a href="#" class="icon">A</a>
+            </div>
           </div>
         
       </div>

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService, Item} from './service/api.service';
-import { Comment } from './models/comment';
+import { Comment,ResponseComment } from './models/comment';
 import { CommentService } from './service/comment.service'
 import { NgForm } from '@angular/forms';
+import { User } from './class/user';
 
+
+const CURRENT_USER: User = new User(1, 'Alice');
 @Component({
   selector: 'ac-root',
   templateUrl: './app.component.html',
@@ -15,8 +18,10 @@ export class AppComponent implements OnInit {
   
   public $items!: Observable<Item>
   // items!: Item[]
-  comes$!: Comment
+
+  comes$!: Comment[]
   public comments$!: Observable<Comment>
+  currentUser = CURRENT_USER;
   form!: NgForm
 
 
@@ -40,8 +45,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): any{
     this.$items = this.api.getUsers();
     // this.comments$ = this.comment.getComments()
-    this.comment.getComments().subscribe((res) => {
-       this.comes$ = res
+    this.comment.getComments().subscribe((res: any) => {
+       this.comes$ = res.comments
        console.log(this.comes$)
     })
     

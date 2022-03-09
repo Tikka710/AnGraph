@@ -13,15 +13,36 @@ async function main(){
 
   const users = await prisma.user.findMany()
 
-//   const user = await prisma.user.create({
-//   data: {
-//     name: "Alice",
-//     email: "alice@prisma.io",
-//     user: {
-//       create: { title: "Join us for Prisma Day 2020" },
-//     },
-//   },
-// })
+  const user = await prisma.user.create({
+    
+  data: {
+    name: "Alice",
+    email: "alice@prisma.io",
+    comment: {
+      create: [
+        {
+          message: "Helooooo",
+          createdAt: new Date('2006/03/22 11:00:00'),
+        }
+      ]
+    }
+  },
+})
+  const user2 = await prisma.user.create({
+    
+  data: {
+    name: "Nana",
+    email: "Nana@prisma.io",
+    comment: {
+      create: [
+        {
+          message: "test",
+          createdAt: new Date('2016/010/1 11:00:00'),
+        }
+      ]
+    }
+  },
+})
 
   const jiro = await prisma.user.upsert({
     where: { email: "jiro@example.com" },
@@ -32,7 +53,7 @@ async function main(){
     },
   });
 
-  console.log({ Hello, users})
+  console.log({ Hello, users, user, user2})
 
   
 

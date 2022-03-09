@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { Comment } from '../models/comment';
+import { Comment, ResponseComment} from '../models/comment';
 import { of } from "rxjs";
 
 @Injectable({
@@ -10,14 +10,14 @@ import { of } from "rxjs";
 })
 export class CommentService {
   private base_url: string = 'http://localhost:3000'
-  comments!: Comment
+  comments!: ResponseComment
 
   constructor(private http: HttpClient) { }
 
-  getComments(): Observable<Comment>{
-    return this.http.get<Comment>(`${this.base_url}/comments`)
+  getComments(): Observable<ResponseComment>{
+    return this.http.get<ResponseComment>(`${this.base_url}/comments`)
     .pipe(
-      catchError(this.handleError<Comment>('getComments'))
+      catchError(this.handleError<ResponseComment>('getComments'))
     );
   }
 
