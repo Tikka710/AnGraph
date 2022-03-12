@@ -11,7 +11,7 @@ async function main(){
     },
   })
 
-  const users = await prisma.user.findMany()
+  // const users = await prisma.user.findMany()
 
   const user = await prisma.user.create({
     
@@ -22,6 +22,7 @@ async function main(){
       create: [
         {
           message: "Helooooo",
+          isEdit: true,
           createdAt: new Date('2006/03/22 11:00:00'),
         }
       ]
@@ -37,6 +38,7 @@ async function main(){
       create: [
         {
           message: "test",
+          isEdit: true,
           createdAt: new Date('2016/010/1 11:00:00'),
         }
       ]
@@ -53,7 +55,7 @@ async function main(){
     },
   });
 
-  console.log({ Hello, users, user, user2})
+  console.log({ Hello,user, user2})
 
   
 

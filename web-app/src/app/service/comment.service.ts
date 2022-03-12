@@ -21,10 +21,24 @@ export class CommentService {
     );
   }
 
-  addComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.base_url}/comments`, comment)
+  addComment(comment: Comment): Observable<ResponseComment> {
+    return this.http.post<ResponseComment>(`${this.base_url}/comments`, comment)
     .pipe(
-      catchError(this.handleError<Comment>('addComment'))
+      catchError(this.handleError<ResponseComment>('addComment'))
+    );
+  }
+
+  updateComment(comment: Comment): Observable<ResponseComment>{
+    return this.http.put<ResponseComment>(`${this.base_url}/comments/${comment.id}`, comment)
+    .pipe(
+      catchError(this.handleError<ResponseComment>('updateComment'))
+    );
+  }
+
+  deleteComment(comment: Comment): Observable<ResponseComment>{
+    return this.http.delete<ResponseComment>(`${this.base_url}/comments/${comment.id}`)
+    .pipe(
+      catchError(this.handleError<ResponseComment>('deleteComment'))
     );
   }
 

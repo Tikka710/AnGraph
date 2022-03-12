@@ -5,6 +5,7 @@ export interface Comment {
   message: string
   createdAt: number
   user_id: number
+  isEdit: boolean
   user: User
 }
 

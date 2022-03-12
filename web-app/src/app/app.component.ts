@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 import { User } from './class/user';
 
 
-const CURRENT_USER: User = new User(1, 'Alice');
+const CURRENT_USER: User = new User(10, 'Alice');
 @Component({
   selector: 'ac-root',
   templateUrl: './app.component.html',
@@ -34,6 +34,18 @@ export class AppComponent implements OnInit {
         
       }
     )
+  }
+
+  updateComment(form: Comment): void{
+    this.comment.updateComment(form).subscribe(res => {
+      console.log(res)
+    })
+  }
+
+  deleteComment(form: Comment): void{
+    this.comment.deleteComment(form).subscribe(res => {
+      console.log(res)
+    })
   }
 
   // getComments(): void{

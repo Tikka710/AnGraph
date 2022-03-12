@@ -7,12 +7,26 @@
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="media-heading">{{ comment.user.name}}
                   <ng-container *ngIf="comment.user.id === currentUser.id">
-                    <mat-icon>edit</mat-icon>                      
+                    <i title="編集" (click)="comment.isEdit = !comment.isEdit"><mat-icon>edit</mat-icon></i>                    
+                    <i title="削除"><mat-icon>delete</mat-icon></i>                    
                   </ng-container>
                 </h4>
                 <small class="media-date">{{ comment.createdAt | commentDate}}</small>
               </div>
-              <pre>{{ comment.message }}</pre>
+              <ng-container *ngIf="!comment.isEdit">
+                <pre>{{ comment.message }}</pre>
+              </ng-container>
+              <ng-container *ngIf="comment.isEdit">
+                <div class="input-group">
+                  <textarea [(ngModel)]="comment.message" name="edit-comment" class="form-control"></textarea>
+                </div>
+                <div class="edit-group">
+                  <button class="btn btn-success btn-sm" (click)="updateComment(comment)">保存</button>
+                  <button class="btn btn-warning btn-sm" (click)="comment.isEdit = false">キャンセル</button>
+                  
+                </div>
+              </ng-container>
+              
             </div>
             <div *ngIf="comment.user.id === currentUser.id" class="media-right">
               <a href="#" class="icon">A</a>
@@ -45,7 +59,7 @@
       </div>
       <div class="input-group">
         <textarea
-        [(ngModel)]="comes$"
+        [(ngModel)]="form.value.message"
         name="message" 
         class="form-control"
         placeholder="メッセージを入力"
