@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'ac-root',
   template: `
-    <ac-chat></ac-chat>
+    <ac-header></ac-header>
+    
+    <div class="page">
+      <router-outlet>
+
+      </router-outlet>
+    </div>
+    
   `,
   styleUrls: ['./app.component.css']
 })
@@ -13,8 +20,4 @@ export class AppComponent {
 
   constructor(){}
 
-
-  ngOnInit(): any{
-    
-  }
 }

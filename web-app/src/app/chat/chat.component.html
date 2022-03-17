@@ -1,4 +1,4 @@
-<div class="page">
+
   <section class="chat">
     <div class="chat-timeline">
       <div *ngFor="let comment of comes$" class="list-group-item list-group-item-action flex-column align-items-start border-0">
@@ -7,14 +7,14 @@
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="media-heading">{{ comment.user.name}}
                   <ng-container *ngIf="comment.user.id === currentUser.id">
-                    <i title="編集" (click)="comment.isEdit = !comment.isEdit"><mat-icon>edit</mat-icon></i>                    
-                    <i title="削除" data-target="#testModal"><mat-icon>delete</mat-icon></i>
-                    
-                    <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <i title="編集" (click)="comment.isEdit = !comment.isEdit"><mat-icon>edit</mat-icon></i>
+                    <a data-toggle="modal" data-target="#deleteModal"><i title="削除"><mat-icon>delete</mat-icon></i></a> 
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                       <div class="modal-dialog">
                           <div class="modal-content">
                               <div class="modal-header">
-                                  <h4>class="modal-title" id="myModalLabel">削除確認画面</h4>
+                                  <h4 class="modal-title" id="myModalLabel">削除確認画面</h4>
                               </div>
                               <div class="modal-body">
                                   <label>データを削除しますか？</label>
@@ -27,6 +27,7 @@
                       </div>
                   </div>
                   </ng-container>
+                  
                 </h4>
                 <small class="media-date">{{ comment.createdAt | commentDate}}</small>
               </div>
@@ -38,8 +39,8 @@
                   <textarea [(ngModel)]="comment.message" name="edit-comment" class="form-control"></textarea>
                 </div>
                 <div class="edit-group">
-                  <button class="btn btn-success btn-sm" (click)="updateComment(comment)">保存</button>
-                  <button class="btn btn-warning btn-sm" (click)="comment.isEdit = false">キャンセル</button>
+                  <button class="btn btn-info btn-sm" (click)="updateComment(comment)">保存</button>
+                  <button class="btn btn-light btn-sm" (click)="comment.isEdit = false">キャンセル</button>
                   
                 </div>
               </ng-container>
@@ -71,4 +72,4 @@
       </div>
     </form>
   </section>
-</div>
+
