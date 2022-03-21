@@ -7,7 +7,8 @@ import { NgForm } from '@angular/forms';
 import { User } from '../class/user';
 
 
-const CURRENT_USER: User = new User(10, 'Alice');
+const CURRENT_USER: User = new User(1, 'Alice');
+const ANOTHER_USER: User = new User(2, 'Nana');
 
 @Component({
   selector: 'ac-chat',
@@ -20,6 +21,7 @@ export class ChatComponent implements OnInit {
   comes$!: Comment[]
   public comments$!: Observable<Comment>
   currentUser = CURRENT_USER;
+  anotherUser = ANOTHER_USER;
   form!: NgForm
 
 

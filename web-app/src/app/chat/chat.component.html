@@ -8,7 +8,7 @@
                 <h4 class="media-heading">{{ comment.user.name}}
                   <ng-container *ngIf="comment.user.id === currentUser.id">
                     <i title="編集" (click)="comment.isEdit = !comment.isEdit"><mat-icon>edit</mat-icon></i>
-                    <a data-toggle="modal" data-target="#deleteModal"><i title="削除"><mat-icon>delete</mat-icon></i></a> 
+                    <i title="削除" (click)="deleteComment(comment)"><mat-icon>delete</mat-icon></i> 
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                       <div class="modal-dialog">
@@ -21,7 +21,7 @@
                               </div>
                               <div class="modal-footer">
                                   <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                  <button type="button" class="btn btn-danger" (click)="deleteComment(comment)">削除</button>
+                                  <button type="button" class="btn btn-danger" >削除</button>
                               </div>
                           </div>
                       </div>

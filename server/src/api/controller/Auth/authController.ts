@@ -13,6 +13,7 @@ app.use(cors())
 
 router.post('/', async (req: Request, res: Response, next) => {
   const { name, email } = req.body;
+  console.log(req.body)
 
   try {
     const user = await prisma.user.create({
