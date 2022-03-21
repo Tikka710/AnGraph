@@ -3,9 +3,7 @@ import Express from "express";
 import app from "./api/index";
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
 
-// const app = Express()
 
 const PORT = 3000
 // async function main() {

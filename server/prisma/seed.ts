@@ -2,14 +2,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main(){
-  const Hello = await prisma.comment.upsert({
-    where: { id: 1},
-    update: {},
-    create: {
-      message: "おはようございます",
-
-    },
-  })
+  // const Hello = await prisma.comment.upsert({
+  //   where: { id: 1},
+  //   update: {},
+  //   create: {
+  //     message: "おはようございます",
+  //   },
+  // })
 
   // const users = await prisma.user.findMany()
 
@@ -55,7 +54,7 @@ async function main(){
     },
   });
 
-  console.log({ Hello,user, user2})
+  console.log({ user, user2})
 
   
 
